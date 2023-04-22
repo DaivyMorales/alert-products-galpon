@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>Home</div>;
+  return <div>THIS IS A TEST WITH CORS</div>;
 }
