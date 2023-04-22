@@ -13,7 +13,7 @@ const conn: Conn = {
 export const dbConnect = async () => {
   if (conn.isConnected) return;
 
-  const db = await connect(process.env.URL_DB_DEPLOYED || "");
+  const db = await connect(process.env.URL_DB_DEPLOYED);
 
   conn.isConnected = !!db.connections[0].readyState;
 
