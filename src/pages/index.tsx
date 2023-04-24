@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div>
-      THIS IS A TEST WITH CORS
+      <h1 className="font-black text-2xl">Inter</h1>
       <button onClick={() => deleteTest()}>Eliminar datos</button>
     </div>
   );
