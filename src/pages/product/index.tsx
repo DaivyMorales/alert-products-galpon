@@ -111,7 +111,9 @@ export default function HomeProduct({ data }: MyProps) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const res = await fetch("https://purchasing-control.vercel.app/api/products");
+  const res = await fetch(
+    "https://alert-products-galpon.vercel.app/api/products"
+  );
   const data = await res.json();
 
   return {

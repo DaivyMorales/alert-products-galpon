@@ -22,4 +22,4 @@ const causesSchema = new Schema<TCauses>(
   }
 );
 
-export default models.Product || model<TCauses>("Causes", causesSchema);
+export default models.Causes || model<TCauses>("Causes", causesSchema);
