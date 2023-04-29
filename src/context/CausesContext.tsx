@@ -7,6 +7,9 @@ interface CausesContextProviderProps {
 interface ICauses {
   type: string;
   description: string;
+  _id: string;
+  createdAt: string;
+  updateAt: string;
 }
 
 interface IContext {

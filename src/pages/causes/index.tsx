@@ -1,21 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { GetServerSidePropsContext } from "next";
-import { MdOutlineAdd } from "react-icons/md";
 import { BiArrowBack } from "react-icons/bi";
-import ProductsForm from "@/components/products/ProductsForm";
 import { alertContext } from "@/context/AlertContext";
-import { productContext } from "@/context/ProductContext";
-import CardProduct from "@/components/products/CardProduct";
+import CausesCard from "@/components/causes/CausesCard";
 import { useRouter } from "next/router";
+import { causesContext } from "@/context/CausesContext";
 
 interface MyProps {
-  data: IProduct[];
+  data: ICauses[];
 }
 
-interface IProduct {
-  PRODUCTO: string;
-  NOMBRE: string;
-  PRESENTACION: number;
+interface ICauses {
+  type: string;
+  description: string;
   _id: string;
   createdAt: string;
   updateAt: string;
@@ -23,19 +20,17 @@ interface IProduct {
 
 export default function HomeProduct({ data }: MyProps) {
   const { showAlert, setShowAlert } = useContext(alertContext);
-  const { products, setProducts, deleteProduct } = useContext(productContext);
-
-  console.log(products);
+  const { causes, setCauses } = useContext(causesContext);
 
   useEffect(() => {
-    setProducts(data);
+    setCauses(data);
   }, []);
 
   const router = useRouter();
 
   return (
     <div>
-      <div className={` blur-${showAlert ? "sm" : "none"} `}>
+      <div>
         <div className="gradientDiv ">
           <div className="text-purple-700  flex justify-start px-4 py-3 items-center gap-x-1 ">
             <BiArrowBack size={18} />
@@ -47,59 +42,29 @@ export default function HomeProduct({ data }: MyProps) {
             </h4>
           </div>
         </div>
-        <div className=" flex flex-col justify-center items-center shadow-lg    ">
-          <div className="container mt-42 -mt-52 mx-auto  px-10 sm:px-30 lg:px-44 flex flex-col gap-y-6 mb-10">
-            <div className="flex flex-col gap-y-2">
-              <h1>Tabla de productos</h1>
+        <div className=" flex flex-col justify-center items-center  ">
+          <div className="-mt-52 mx-auto  px-8  flex justify-center items-start flex-col gap-y-3 mb-10  rounded-xl border-1 py-5 z-10">
+            <div className="flex  flex-col gap-y-2 ">
+              <h1>Tabla de causales</h1>
               <p>
-                Añade un nuevo Producto en el boton de <br></br> + Crear Nuevo
+                Añade una nueva Causal en el boton de <br></br> + Crear Nuevo
               </p>
             </div>
             <div
-              className={`relative overflow-x-auto brightness-${
-                showAlert ? "50" : ""
-              }  grid grid-cols-2 border-1 gap-4 rounded-xl  bg-white shadow-lg px-4 py-5`}
+              className={`relative overflow-x-auto  grid grid-cols-2   gap-4 rounded-xl  px-4 py-5`}
             >
-              <div className="flex justify-start items-start ">
-                <div className="text-2xs px-1 rounded-full bg-gray-200 font-black text-purple-700">
-                  {products.length}
-                </div>
+              <div className="col-span-1">
+                <button className="w-3/5">Crear nueva causal</button>
               </div>
-              <div className="flex justify-end items-start ">
-                <button onClick={() => setShowAlert(!showAlert)}>
-                  <MdOutlineAdd size={15} />
-                  Crear nuevo
-                </button>
+              <div className="col-span-2 grid grid-cols-2 gap-2 ">
+                {causes.map((cause) => (
+                  <CausesCard cause={cause} key={cause._id} />
+                ))}
               </div>
-              <table className="col-span-2 w-full text-sm text-left text-gray-500 ">
-                <thead className="text-2xs text-gray-500 ">
-                  <tr>
-                    <th scope="col" className="py-2">
-                      Tipo
-                    </th>
-                    <th scope="col" className="py-2">
-                      Descripción
-                    </th>
-                    <th scope="col" className="py-2">
-                      Acciones
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((product, index) => (
-                    <CardProduct
-                      product={product}
-                      key={product._id}
-                      index={index}
-                    />
-                  ))}
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
       </div>
-      <ProductsForm />
     </div>
   );
 }

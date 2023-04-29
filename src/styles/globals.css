@@ -24,7 +24,7 @@ h5 {
   @apply text-sm font-semibold;
 }
 h6 {
-  @apply text-xs font-semibold;
+  @apply text-xs font-bold;
 }
 
 .border-1 {

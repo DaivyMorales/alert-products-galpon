@@ -20,11 +20,11 @@
 }
 
 button {
-    @apply bg-purple-600 text-white text-xs flex justify-center items-center gap-x-1 font-medium px-2 py-3 rounded-lg hover:bg-purple-500;
+    @apply bg-purple-600 text-white text-xs flex justify-center items-center gap-x-1 font-medium px-2 py-2 rounded-lg hover:bg-purple-500;
 }
 
 button {
-    @apply bg-purple-600 text-white text-xs flex justify-center items-center gap-x-1 font-medium px-2 py-3 rounded-lg hover:bg-purple-500;
+    @apply bg-purple-600 text-white text-xs flex justify-center items-center gap-x-1 font-medium px-2 py-2 rounded-lg hover:bg-purple-500;
 }
 
 .buttonSubmit {
@@ -60,7 +60,7 @@ body {
     .gradientDiv {
         height: 50vh;
         background-image: linear-gradient(to left, #d8e1ff, #f4d6fa, white);
-        @apply flex justify-end items-start;
+        @apply flex justify-end items-start blur-md;
         /* elimina los bordes */
         /* elimina la sombra */
     }
