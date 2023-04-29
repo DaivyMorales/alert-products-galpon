@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/main.scss";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import { motion } from "framer-motion";

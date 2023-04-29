@@ -2,6 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+body {
   font-family: "Inter", sans-serif;
+  background-color: #f9fbfc;
+}
+
+h1 {
+  @apply text-5xl font-bold;
+}
+
+h2 {
+  @apply text-2xl font-black;
+}
+h3 {
+  @apply text-xl font-semibold;
+}
+h4 {
+  @apply text-lg font-semibold;
+}
+h5 {
+  @apply text-sm font-semibold;
+}
+h6 {
+  @apply text-xs font-semibold;
+}
+
+.border-1 {
+  border-width: 1px;
+}
+
+.text-2xs {
+  font-size: 11px;
+}
+
+p {
+  @apply text-sm font-normal;
+}
+
+input {
+  border-width: 1px;
+  @apply text-sm p-2 rounded-md border-gray-100;
+}
+
+label {
+  @apply text-sm font-semibold text-gray-600;
 }

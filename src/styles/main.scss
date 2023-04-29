@@ -1,0 +1,158 @@
+.fieldInput {
+    @apply bg-white w-16 text-black text-xs;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    // Estilos específicos para webkit
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Estilos específicos para Firefox
+    &::-moz-number-spin-box {
+        -moz-appearance: textfield;
+    }
+}
+
+button {
+    @apply bg-purple-600 text-white text-xs flex justify-center items-center gap-x-1 font-medium px-2 py-3 rounded-lg hover: bg-purple-500;
+}
+
+button {
+    @apply bg-purple-600 text-white text-xs flex justify-center items-center gap-x-1 font-medium px-2 py-3 rounded-lg hover: bg-purple-500;
+}
+
+.buttonSubmit {
+    @apply bg-purple-600 text-white text-xs flex justify-center items-center gap-x-1 font-medium px-2 py-3 rounded-lg hover: bg-purple-500;
+}
+
+.buttonExcel {
+    @apply bg-green-600 cursor-pointer text-white text-xs flex justify-center items-center gap-x-1 font-medium px-2 py-2 rounded-lg hover: bg-green-500;
+}
+
+.alertBox {
+    border-radius: 5px;
+    margin-bottom: 46px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    border-width: 1px;
+    @apply p-10 bg-white flex flex-col gap-y-2 justify-start items-start shadow-lg border-2;
+}
+
+.inputForm {
+    border-width: 1px;
+    @apply border-gray-400;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+
+    .gradientDiv {
+        height: 50vh;
+        background-image: linear-gradient(to left, #d8e1ff, #f4d6fa, white);
+        @apply flex justify-end items-start;
+        /* elimina los bordes */
+        /* elimina la sombra */
+    }
+
+    // .contenido {
+    //     height: 75vh;
+    //     /* establece la altura del resto de la página */
+    //     background-color: #fff;
+    //     /* establece el color de fondo blanco */
+    // }
+}
+
+.inputEdit {
+    @apply bg-gray-100 text-xs w-20;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    // Estilos específicos para webkit
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Estilos específicos para Firefox
+    &::-moz-number-spin-box {
+        -moz-appearance: textfield;
+    }
+}
+
+.inputCount {
+    @apply bg-gray-100 text-xs w-20;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    // Estilos específicos para webkit
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Estilos específicos para Firefox
+    &::-moz-number-spin-box {
+        -moz-appearance: textfield;
+    }
+}
+
+.inputNombre {
+    @apply bg-gray-100 text-xs w-56;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    // Estilos específicos para webkit
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Estilos específicos para Firefox
+    &::-moz-number-spin-box {
+        -moz-appearance: textfield;
+    }
+}
+
+.inputProducto {
+    @apply bg-gray-100 text-xs w-20;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    // Estilos específicos para webkit
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Estilos específicos para Firefox
+    &::-moz-number-spin-box {
+        -moz-appearance: textfield;
+    }
+}
