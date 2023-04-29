@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-type TCauses = {
+export type TCauses = {
   type: string;
   description: string;
 };

@@ -14,7 +14,7 @@ export default async function idInventory(
   switch (method) {
     case "GET":
       try {
-        const inventoryFound = await Inventory.findById(id);
+        const inventoryFound = await Inventory.findById(id).populate("CAUSA");
 
         if (!inventoryFound) return res.status(404).json("Inventory not found");
 
@@ -29,7 +29,7 @@ export default async function idInventory(
       try {
         const inventory = await Inventory.findByIdAndUpdate(id, body, {
           new: true,
-        });
+        }).populate("CAUSA");
 
         if (!inventory) return res.status(404).json("inventory not found");
 

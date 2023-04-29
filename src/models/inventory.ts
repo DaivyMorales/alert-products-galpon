@@ -1,5 +1,5 @@
-import { Schema, model, models } from "mongoose";
-import Causes from "./causes";
+import { Schema, model, models, Types } from "mongoose";
+import Causes, { TCauses } from "./causes";
 
 type SchemaInventory = {
   PRODUCTO: string;
@@ -7,7 +7,7 @@ type SchemaInventory = {
   LOTE: string;
   CANTIDAD: number;
   CANTIDAD_CONTADA: number;
-  type: string;
+  CAUSA: Types.ObjectId | TCauses;
 };
 
 const inventorySchema = new Schema<SchemaInventory>(
@@ -30,21 +30,9 @@ const inventorySchema = new Schema<SchemaInventory>(
     CANTIDAD_CONTADA: {
       type: Number,
     },
-    type: {
-      type: String,
-      ref: "Causes",
-      validate: {
-        validator: function (type: string) {
-          if (type === undefined || type === null) {
-            return true;
-          } else {
-            return Causes.findOne({ type })
-              .then((typeCause) => !!typeCause)
-              .catch(() => false);
-          }
-        },
-        message: "The cause not exits!",
-      },
+    CAUSA: {
+      type: Schema.Types.ObjectId,
+      ref: "Causes", // Se establece la referencia al modelo 'Causes'
     },
   },
   {
