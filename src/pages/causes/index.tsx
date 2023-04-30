@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GetServerSidePropsContext } from "next";
 import { BiArrowBack } from "react-icons/bi";
 import { alertContext } from "@/context/AlertContext";
 import CausesCard from "@/components/causes/CausesCard";
+import CauseNew from "@/components/causes/CauseNew";
 import { useRouter } from "next/router";
 import { causesContext } from "@/context/CausesContext";
 
@@ -21,6 +22,8 @@ interface ICauses {
 export default function HomeProduct({ data }: MyProps) {
   const { showAlert, setShowAlert } = useContext(alertContext);
   const { causes, setCauses } = useContext(causesContext);
+
+  const [showNew, setShowNew] = useState<boolean>(false);
 
   useEffect(() => {
     setCauses(data);
@@ -54,7 +57,14 @@ export default function HomeProduct({ data }: MyProps) {
               className={`relative overflow-x-auto  grid grid-cols-2   gap-4 rounded-xl  px-4 py-5`}
             >
               <div className="col-span-2 grid grid-cols-1 gap-2 ">
-                <button className="w-full">Crear nueva causal</button>
+                <button className="w-full" onClick={() => setShowNew(!showNew)}>
+                  Crear nueva causal
+                </button>
+                {showNew ? (
+                  <CauseNew showNew={showNew} setShowNew={setShowNew} />
+                ) : (
+                  ""
+                )}
                 {causes.map((cause) => (
                   <CausesCard cause={cause} key={cause._id} />
                 ))}
