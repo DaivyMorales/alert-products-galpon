@@ -60,7 +60,7 @@ body {
     .gradientDiv {
         height: 50vh;
         background-image: linear-gradient(to left, #d8e1ff, #f4d6fa, white);
-        @apply flex justify-end items-start blur-md;
+        @apply flex justify-end items-start blur-lg;
         /* elimina los bordes */
         /* elimina la sombra */
     }
@@ -138,6 +138,51 @@ body {
 
 .inputProducto {
     @apply bg-gray-100 text-xs w-20;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    // Estilos específicos para webkit
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Estilos específicos para Firefox
+    &::-moz-number-spin-box {
+        -moz-appearance: textfield;
+    }
+}
+
+textarea {
+    @apply w-80 h-full text-xs;
+
+    overflow: hidden;
+    resize: none;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    // Estilos específicos para webkit
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Estilos específicos para Firefox
+    &::-moz-number-spin-box {
+        -moz-appearance: textfield;
+    }
+}
+
+.inputCause {
+    @apply w-80 h-full text-xs font-bold border-0;
 
     &:focus {
         outline: none;

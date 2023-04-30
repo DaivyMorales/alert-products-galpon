@@ -15,7 +15,7 @@ interface ICauses {
   description: string;
   _id: string;
   createdAt: string;
-  updateAt: string;
+  updatedAt: string;
 }
 
 export default function HomeProduct({ data }: MyProps) {
@@ -43,7 +43,7 @@ export default function HomeProduct({ data }: MyProps) {
           </div>
         </div>
         <div className=" flex flex-col justify-center items-center  ">
-          <div className="-mt-52 mx-auto  px-8  flex justify-center items-start flex-col gap-y-3 mb-10  rounded-xl border-1 py-5 z-10">
+          <div className="-mt-52 mx-auto  px-8  flex justify-center items-start flex-col gap-y-3 mb-10  rounded-xl  py-5 z-10">
             <div className="flex  flex-col gap-y-2 ">
               <h1>Tabla de causales</h1>
               <p>
@@ -53,10 +53,8 @@ export default function HomeProduct({ data }: MyProps) {
             <div
               className={`relative overflow-x-auto  grid grid-cols-2   gap-4 rounded-xl  px-4 py-5`}
             >
-              <div className="col-span-1">
-                <button className="w-3/5">Crear nueva causal</button>
-              </div>
-              <div className="col-span-2 grid grid-cols-2 gap-2 ">
+              <div className="col-span-2 grid grid-cols-1 gap-2 ">
+                <button className="w-full">Crear nueva causal</button>
                 {causes.map((cause) => (
                   <CausesCard cause={cause} key={cause._id} />
                 ))}

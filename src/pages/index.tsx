@@ -193,7 +193,7 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
                   </tr>
                 </thead>
                 <tbody>
-                  {information
+                  {/* {information
                     .filter((info) => {
                       if (searchTerm == "") {
                         return info;
@@ -203,7 +203,7 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
                     })
                     .map((info: IInventory) => (
                       <InventoryCard info={info} key={info._id} />
-                    ))}
+                    ))} */}
                 </tbody>
               </table>
             </div>
