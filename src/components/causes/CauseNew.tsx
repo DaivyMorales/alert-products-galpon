@@ -31,7 +31,6 @@ export default function CauseNew({ showNew, setShowNew }: MyProps) {
     initialValues: { newCauseSchema },
     onSubmit: async (values, { resetForm }) => {
       await createCause(values.newCauseSchema);
-      console.log(values.newCauseSchema);
       resetForm();
       setShowNew(false);
     },

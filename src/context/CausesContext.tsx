@@ -20,6 +20,7 @@ interface IContext {
   setCauseChoose: React.Dispatch<React.SetStateAction<string>>;
   updateCause: (id: string, body: object) => Promise<void>;
   createCause: (values: object | undefined) => Promise<void>;
+  deleteCause: (id: string) => Promise<void>;
 }
 
 export const causesContext = createContext<IContext>({
@@ -29,6 +30,7 @@ export const causesContext = createContext<IContext>({
   setCauseChoose: () => {},
   updateCause: async () => {},
   createCause: async () => {},
+  deleteCause: async () => {},
 });
 
 export const CausesContextProvider = ({
@@ -59,6 +61,12 @@ export const CausesContextProvider = ({
     }
   };
 
+  const deleteCause = async (id: string) => {
+    const response = await axios.delete(`/api/causes/${id}`);
+    setCauses(causes.filter((cause) => cause._id !== id));
+    return response.data;
+  };
+
   return (
     <causesContext.Provider
       value={{
@@ -68,6 +76,7 @@ export const CausesContextProvider = ({
         setCauseChoose,
         updateCause,
         createCause,
+        deleteCause,
       }}
     >
       {children}
