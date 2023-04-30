@@ -12,7 +12,7 @@ export default async function indexInventory(
   switch (method) {
     case "GET":
       try {
-        const cause = await Causes.find();
+        const cause = await Causes.find().sort({ createdAt: "desc" });
         return res.status(200).json(cause);
       } catch (error) {
         if (error instanceof Error) {
