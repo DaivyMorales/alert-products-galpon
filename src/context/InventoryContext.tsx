@@ -43,7 +43,6 @@ export const InventoryContextProvider = ({
   const [inventories, setInventories] = useState<IInventory[]>([]);
 
   const updateInventory = async (id: string, body: object) => {
-    console.log(id, body);
     try {
       const response = await axios.put(`/api/inventory/${id}`, body);
 
@@ -56,6 +55,7 @@ export const InventoryContextProvider = ({
           }
         })
       );
+      console.log(response);
     } catch (error) {
       console.log(error);
     }

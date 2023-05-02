@@ -29,11 +29,7 @@ interface EntryCardProps {
 
 interface Icounter {
   CANTIDAD_CONTADA: number;
-  CAUSA: {
-    _id: string;
-    createdAt: string;
-    updatedAt: string;
-  };
+  CAUSA: string;
 }
 
 export default function InventoryCard({ info }: EntryCardProps) {
@@ -46,18 +42,10 @@ export default function InventoryCard({ info }: EntryCardProps) {
 
   const [counter, setCounter] = useState<Icounter>({
     CANTIDAD_CONTADA: !info.CANTIDAD_CONTADA ? 0 : info.CANTIDAD_CONTADA,
-    CAUSA: !info.CAUSA
-      ? {
-          _id: "",
-          createdAt: "",
-          updatedAt: "",
-        }
-      : {
-          _id: info.CAUSA._id,
-          createdAt: info.CAUSA.createdAt,
-          updatedAt: info.CAUSA.updatedAt,
-        },
+    CAUSA: !info.CAUSA ? "" : info.CAUSA._id,
   });
+
+  console.log(counter);
 
   useEffect(() => {
     products.filter((product) => {
@@ -80,7 +68,7 @@ export default function InventoryCard({ info }: EntryCardProps) {
 
     enableReinitialize: true,
   });
-  console.log("formik.values.counter", formik.values.counter);
+  // console.log("formik.values.counter", formik.values.counter);
 
   const TOTAL: number =
     formik.values.counter.CANTIDAD_CONTADA === 0
@@ -133,7 +121,13 @@ export default function InventoryCard({ info }: EntryCardProps) {
         {TOTAL - info.CANTIDAD}
       </td>
       <td className="">
-        <CausesMenu info={info} setCounter={setCounter} counter={counter} />
+        <CausesMenu
+          info={info}
+          setCounter={setCounter}
+          counter={counter}
+          handleSubmit={formik.handleSubmit}
+          setFieldValue={formik.setFieldValue}
+        />
       </td>
     </tr>
   );

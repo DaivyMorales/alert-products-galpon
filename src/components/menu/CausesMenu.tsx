@@ -1,6 +1,6 @@
 import { causesContext } from "@/context/CausesContext";
 import { useContext, useState, useEffect } from "react";
-import { HiSparkles, HiXCircle } from "react-icons/hi";
+import { HiSparkles } from "react-icons/hi";
 import { BiChevronDown } from "react-icons/bi";
 
 interface IInventory {
@@ -21,36 +21,32 @@ interface IInventory {
 
 interface Icounter {
   CANTIDAD_CONTADA: number;
-  CAUSA: {
-    _id: string;
-    createdAt: string;
-    updatedAt: string;
-  };
+  CAUSA: string;
 }
 
 interface MyProps {
   info: IInventory;
   setCounter: React.Dispatch<React.SetStateAction<Icounter>>;
   counter: Icounter;
+  handleSubmit: () => void;
+  setFieldValue: (field: string, value: any) => void;
 }
 
-interface ICauses {
-  type: string;
-  description: string;
-  _id: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export default function CausesMenu({ info, setCounter, counter }: MyProps) {
+export default function CausesMenu({
+  info,
+  setCounter,
+  counter,
+  handleSubmit,
+  setFieldValue,
+}: MyProps) {
   const { causes, causeChoose, setCauseChoose } = useContext(causesContext);
 
   const [nameCause, setNameCause] = useState<string>("");
   const [causeFound, setCauseFound] = useState<string>("");
 
   useEffect(() => {
-    if (counter.CAUSA._id !== "") {
-      setCauseFound(counter.CAUSA._id);
+    if (counter.CAUSA !== "") {
+      setCauseFound(counter.CAUSA);
     } else {
     }
   }, []);
@@ -98,14 +94,11 @@ export default function CausesMenu({ info, setCounter, counter }: MyProps) {
                 key={cause._id}
                 onClick={() => {
                   setCauseFound(cause._id);
-                  setCounter({
-                    ...counter,
-                    CAUSA: {
-                      _id: cause._id,
-                      createdAt: cause.createdAt,
-                      updatedAt: cause.updatedAt,
-                    },
-                  });
+
+                  setFieldValue("counter.CAUSA", cause._id);
+
+                  handleSubmit();
+
                   setCauseChoose("n");
                 }}
                 className=" py-1 px-2 hover:bg-gray-200 text-black font-medium flex justify-start items-center gap-x-1 cursor-pointer "
