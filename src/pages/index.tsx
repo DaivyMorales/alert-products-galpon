@@ -12,12 +12,21 @@ import { productContext } from "@/context/ProductContext";
 import { inventoryContext } from "@/context/InventoryContext";
 import { AiFillDelete } from "react-icons/ai";
 import { IoSearch } from "react-icons/io5";
+import { causesContext } from "../context/CausesContext";
 
 interface MyProps {
   data1: IInventory[];
   data2: IProducts[];
+  data3: ICauses[];
 }
 
+interface ICauses {
+  type: string;
+  description: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+}
 interface IProducts {
   PRODUCTO: string;
   NOMBRE: string;
@@ -33,6 +42,7 @@ interface IInventory {
   LOTE: string;
   CANTIDAD: number;
   CANTIDAD_CONTADA: number;
+  CAUSA: string;
   _id: string;
   createdAt: string;
   updatedAt: string;
@@ -45,9 +55,11 @@ interface IData {
   PRODUCTO: string;
 }
 
-export default function onlyadminuser({ data1, data2 }: MyProps) {
+export default function onlyadminuser({ data1, data2, data3 }: MyProps) {
   const { fieldChoose, setFieldChoose } = useContext(cardContext);
   const { setProducts, getProducts } = useContext(productContext);
+
+  const { setCauses, setCauseChoose, causeChoose } = useContext(causesContext);
 
   const { deleteAllInventory } = useContext(inventoryContext);
 
@@ -62,6 +74,7 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
   useEffect(() => {
     setInformation(data1);
     setProducts(data2);
+    setCauses(data3);
   }, []);
 
   const handleFileUpload = async (
@@ -96,8 +109,9 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
 
   return (
     <div>
-      <div>
-        <div className="gradientDiv ">
+      <div >
+        <div className="gradientDiv " 
+              onClick={() => setCauseChoose("n")}>
           <div
             className="text-purple-700 flex justify-end px-4 py-3 items-center gap-x-1 cursor-pointer"
             onClick={() => router.push("/product")}
@@ -107,7 +121,7 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
           </div>
         </div>
         <div className=" flex flex-col justify-center items-center">
-          <div className="container mt-42 -mt-52 mx-auto  px-10  flex flex-col gap-y-6 mb-10">
+          <div className="container mt-42 z-50 -mt-52 mx-auto  px-10  flex flex-col gap-y-6 mb-10">
             <div className="flex flex-col justify-start items-start gap-y-2">
               <h1>Reporte de Inventario</h1>
               <p>
@@ -143,7 +157,7 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
             </div>
             <div
               style={information.length === 0 ? { visibility: "hidden" } : {}}
-              className={`relative overflow-x-auto  grid grid-cols-2 border-1 gap-4 rounded-xl  bg-white px-4 py-5`}
+              className={`relative overflow-x-auto  grid grid-cols-2 border-1 gap-4 rounded-xl bg-white px-4 pb-10 z-0`}
             >
               <div className="w-full flex justify-start items-end gap-x-3 ">
                 <div>
@@ -160,40 +174,44 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
                 </div>
               </div>
 
-              {/* <div className=""></div> */}
-
-              <table className="col-span-2 w-full text-sm text-left text-gray-500">
+              <table className="col-span-2 w-full text-sm text-left text-gray-500 ">
                 <thead className="text-2xs text-gray-500">
-                  <tr className="border-b font-normal text-xs border-gray-100">
-                    <th scope="col" className="px-2 py-2 rounded-ss-lg">
+                  <tr className="border-b font-normal text-2xs border-gray-100">
+                    <th scope="col" className="p-1 rounded-ss-lg">
                       Producto
                     </th>
-                    <th scope="col" className="px-2 py-2">
+                    <th scope="col" className="p-1">
                       Nombre
                     </th>
-                    <th scope="col" className="px-2 py-2">
+                    <th scope="col" className="p-1">
                       Presentacion
                     </th>
-                    <th scope="col" className="px-2 py-2 ">
+                    <th scope="col" className="p-1 ">
                       Lote
                     </th>
-                    <th scope="col" className="px-2 py-2 ">
+                    <th scope="col" className="p-1 ">
                       Cantidad
                     </th>
 
-                    <th scope="col" className="px-2 py-2 ">
+                    <th scope="col" className="p-1 ">
                       Conteo
                     </th>
-                    <th scope="col" className="px-2 py-2 ">
+                    <th scope="col" className="p-1 ">
                       Total
                     </th>
-                    <th scope="col" className="px-2 py-2 rounded-se-lg">
+                    <th scope="col" className="p-1 rounded-se-lg">
                       Diferencia
+                    </th>
+                    <th scope="col" className="p-1 ">
+                      Causal
+                    </th>
+                    <th scope="col" className="p-1 rounded-se-lg">
+                      Observación
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {/* {information
+                  {information
                     .filter((info) => {
                       if (searchTerm == "") {
                         return info;
@@ -203,7 +221,7 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
                     })
                     .map((info: IInventory) => (
                       <InventoryCard info={info} key={info._id} />
-                    ))} */}
+                    ))}
                 </tbody>
               </table>
             </div>
@@ -215,17 +233,16 @@ export default function onlyadminuser({ data1, data2 }: MyProps) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const res1 = await fetch(
-    "https://alert-products-galpon.vercel.app/api/inventory"
-  );
+  const res1 = await fetch("http://localhost:3001/api/inventory");
   const data1 = await res1.json();
 
-  const res2 = await fetch(
-    "https://alert-products-galpon.vercel.app/api/products"
-  );
+  const res2 = await fetch("http://localhost:3001/api/products");
   const data2 = await res2.json();
 
+  const res3 = await fetch("http://localhost:3001/api/causes");
+  const data3 = await res3.json();
+
   return {
-    props: { data1, data2 },
+    props: { data1, data2, data3 },
   };
 }

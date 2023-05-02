@@ -50,7 +50,7 @@ export default function HomeProduct({ data }: MyProps) {
             <div className="flex  flex-col gap-y-2 ">
               <h1>Tabla de causales</h1>
               <p>
-                Añade una nueva Causal en el boton de <br></br> + Crear Nuevo
+                Añade una nueva Causal en el boton de <br></br> + Crear Nueva Causal
               </p>
             </div>
             <div
