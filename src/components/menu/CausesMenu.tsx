@@ -9,14 +9,29 @@ interface IInventory {
   LOTE: string;
   CANTIDAD: number;
   CANTIDAD_CONTADA: number;
-  CAUSA: string;
+  CAUSA: {
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   _id: string;
   createdAt: string;
   updatedAt: string;
 }
 
+interface Icounter {
+  CANTIDAD_CONTADA: number;
+  CAUSA: {
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+
 interface MyProps {
   info: IInventory;
+  setCounter: React.Dispatch<React.SetStateAction<Icounter>>;
+  counter: Icounter;
 }
 
 interface ICauses {
@@ -27,12 +42,18 @@ interface ICauses {
   updatedAt: string;
 }
 
-export default function CausesMenu({ info }: MyProps) {
+export default function CausesMenu({ info, setCounter, counter }: MyProps) {
   const { causes, causeChoose, setCauseChoose } = useContext(causesContext);
 
   const [nameCause, setNameCause] = useState<string>("");
-  console.log("nameCause", nameCause);
   const [causeFound, setCauseFound] = useState<string>("");
+
+  useEffect(() => {
+    if (counter.CAUSA._id !== "") {
+      setCauseFound(counter.CAUSA._id);
+    } else {
+    }
+  }, []);
 
   useEffect(() => {
     const filteredCause = causes.find((Fcause) => Fcause._id === causeFound);
@@ -44,15 +65,21 @@ export default function CausesMenu({ info }: MyProps) {
   }, [causeFound]);
 
   return (
-    <div className="relative">
+    <div className={`${nameCause !== "" ? "w-32" : "w-9"} relative`}>
       <div
         onClick={() => {
           causeChoose !== "n" ? setCauseChoose("n") : setCauseChoose(info._id);
         }}
         className="p-1 border-1 rounded-lg flex justify-between items-center "
       >
-        <div className="flex justify-center items-center gap-x-1">
-          <div className="p-1 border-1 rounded-md bg-gray-300">
+        <div className="flex  justify-center items-center gap-x-1">
+          <div
+            className={`${
+              nameCause !== ""
+                ? "hidden"
+                : "p-1 border-1 rounded-md bg-gray-300"
+            }`}
+          >
             <HiSparkles />
           </div>
           {nameCause}
@@ -71,6 +98,14 @@ export default function CausesMenu({ info }: MyProps) {
                 key={cause._id}
                 onClick={() => {
                   setCauseFound(cause._id);
+                  setCounter({
+                    ...counter,
+                    CAUSA: {
+                      _id: cause._id,
+                      createdAt: cause.createdAt,
+                      updatedAt: cause.updatedAt,
+                    },
+                  });
                   setCauseChoose("n");
                 }}
                 className=" py-1 px-2 hover:bg-gray-200 text-black font-medium flex justify-start items-center gap-x-1 cursor-pointer "

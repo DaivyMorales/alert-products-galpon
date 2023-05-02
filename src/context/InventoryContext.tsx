@@ -11,7 +11,11 @@ interface IInventory {
   LOTE: string;
   CANTIDAD: number;
   CANTIDAD_CONTADA: number;
-  CAUSA: string;
+  CAUSA: {
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   _id: string;
   createdAt: string;
   updatedAt: string;

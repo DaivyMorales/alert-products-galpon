@@ -42,7 +42,11 @@ interface IInventory {
   LOTE: string;
   CANTIDAD: number;
   CANTIDAD_CONTADA: number;
-  CAUSA: string;
+  CAUSA: {
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   _id: string;
   createdAt: string;
   updatedAt: string;
@@ -109,9 +113,8 @@ export default function onlyadminuser({ data1, data2, data3 }: MyProps) {
 
   return (
     <div>
-      <div >
-        <div className="gradientDiv " 
-              onClick={() => setCauseChoose("n")}>
+      <div>
+        <div className="gradientDiv " onClick={() => setCauseChoose("n")}>
           <div
             className="text-purple-700 flex justify-end px-4 py-3 items-center gap-x-1 cursor-pointer"
             onClick={() => router.push("/product")}
