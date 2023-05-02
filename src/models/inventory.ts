@@ -8,6 +8,7 @@ type SchemaInventory = {
   CANTIDAD: number;
   CANTIDAD_CONTADA: number;
   CAUSA: Types.ObjectId | TCauses;
+  OBSERVACION: string;
 };
 
 const inventorySchema = new Schema<SchemaInventory>(
@@ -33,6 +34,10 @@ const inventorySchema = new Schema<SchemaInventory>(
     CAUSA: {
       type: Schema.Types.ObjectId,
       ref: "Causes", // Se establece la referencia al modelo 'Causes'
+    },
+    OBSERVACION: {
+      type: String,
+      trim: true,
     },
   },
   {

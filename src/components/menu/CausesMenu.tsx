@@ -14,6 +14,7 @@ interface IInventory {
     createdAt: string;
     updatedAt: string;
   };
+  OBSERVACION: string;
   _id: string;
   createdAt: string;
   updatedAt: string;
