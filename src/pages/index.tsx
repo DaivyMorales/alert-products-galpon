@@ -13,6 +13,7 @@ import { inventoryContext } from "@/context/InventoryContext";
 import { AiFillDelete } from "react-icons/ai";
 import { IoSearch } from "react-icons/io5";
 import { causesContext } from "../context/CausesContext";
+import ExportButton from "../components/xlsx/ExportCard";
 
 interface MyProps {
   data1: IInventory[];
@@ -145,6 +146,7 @@ export default function onlyadminuser({ data1, data2, data3 }: MyProps) {
                     />
                   </label>
                 </div>
+                <ExportButton tableId="my-table" />
                 <button
                   style={
                     information.length === 0 ? { visibility: "hidden" } : {}
@@ -178,7 +180,10 @@ export default function onlyadminuser({ data1, data2, data3 }: MyProps) {
                 </div>
               </div>
 
-              <table className="col-span-2 w-full text-sm text-left text-gray-500 ">
+              <table
+                id="my-table"
+                className="col-span-2 w-full text-sm text-left text-gray-500 "
+              >
                 <thead className="text-2xs text-gray-500">
                   <tr className="border-b font-normal text-2xs border-gray-100">
                     <th scope="col" className="p-1 rounded-ss-lg">

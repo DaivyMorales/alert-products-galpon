@@ -86,7 +86,7 @@ export default function InventoryCard({ info }: EntryCardProps) {
   }, [formik.values.counter.OBSERVACION]);
 
   return (
-    <tr className="bg-white text-2xs z-40">
+    <tr className="bg-white text-2xs z-40 ">
       <th scope="row" className="p-1 text-black font-medium whitespace-nowrap ">
         {info.PRODUCTO}
       </th>
