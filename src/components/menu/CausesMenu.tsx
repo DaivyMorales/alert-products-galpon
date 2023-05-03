@@ -2,6 +2,7 @@ import { causesContext } from "@/context/CausesContext";
 import { useContext, useState, useEffect } from "react";
 import { HiSparkles } from "react-icons/hi";
 import { BiChevronDown } from "react-icons/bi";
+import { useRouter } from "next/router";
 
 interface IInventory {
   PRODUCTO: string;
@@ -41,6 +42,8 @@ export default function CausesMenu({
   handleSubmit,
   setFieldValue,
 }: MyProps) {
+  const router = useRouter();
+
   const { causes, causeChoose, setCauseChoose } = useContext(causesContext);
 
   const [nameCause, setNameCause] = useState<string>("");
@@ -111,6 +114,14 @@ export default function CausesMenu({
                 {cause.type}
               </li>
             ))}
+            <li
+              onClick={() => {
+                router.push("/causes");
+              }}
+              className=" py-1 px-2 hover:bg-gray-200 text-black font-medium flex justify-start items-center gap-x-1 cursor-pointer "
+            >
+              Editar Causales
+            </li>
           </ul>
         </div>
       )}

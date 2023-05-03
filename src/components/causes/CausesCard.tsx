@@ -80,7 +80,7 @@ export default function CausesCard({ cause }: MyProps) {
         isHoveredDelete === true
           ? "border-1 border-red-500 shadow-sm shadow-red-300 text-red-500"
           : "border-1 "
-      } rounded-md py-3 pl-3 w-96 overflow-wrap break-word shadow-lg bg-white flex flex-col justify-start gap-x-2  gap-y-1 items-start text-xs`}
+      }  rounded-md py-3 pl-3 w-96 overflow-wrap break-word shadow-lg bg-white flex flex-col justify-start gap-x-2  gap-y-1 items-start text-xs`}
     >
       <div className="flex  justify-center items-center">
         <div className="p-1 border-1 rounded-full bg-gray-300">
