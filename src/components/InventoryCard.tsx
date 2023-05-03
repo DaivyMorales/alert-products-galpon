@@ -143,7 +143,7 @@ export default function InventoryCard({ info }: EntryCardProps) {
         <form onSubmit={formik.handleSubmit}>
           <textarea
             name="counter.OBSERVACION"
-            placeholder="Escribe aqui la observación"
+            placeholder="Observacion"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={
