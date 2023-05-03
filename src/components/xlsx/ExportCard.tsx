@@ -27,7 +27,7 @@ export default function ExportButton({ tableId }: MyProps) {
   return (
     <div
       id="export-button"
-      className=" cursor-pointer flex justify-center items-center gap-x-1 text-xs font-normal px-3 py-2 rounded-md shadow-lg border-2 border-gray-700 hover:bg-gray-700"
+      className=" text-black   font-medium px-2 py-2 rounded-lg  bg-white cursor-pointer flex justify-center items-center gap-x-1 text-xs  shadow-lg border-2  hover:bg-gray-200"
     >
       Exportar
       <SiMicrosoftexcel color="whites" />

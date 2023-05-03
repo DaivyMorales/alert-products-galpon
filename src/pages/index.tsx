@@ -133,7 +133,7 @@ export default function onlyadminuser({ data1, data2, data3 }: MyProps) {
                 Importa un archivo de excel para cargar <br></br> los datos en
                 la tabla!
               </p>
-              <div className="flex gap-x-2">
+              <div className="flex justify-center items-center gap-x-2">
                 <div>
                   <label className="buttonExcel">
                     <RiFileExcel2Fill />
