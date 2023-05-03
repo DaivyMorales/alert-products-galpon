@@ -27,8 +27,6 @@ interface EntryCardProps {
 
 interface Icounter {
   CANTIDAD_CONTADA: number;
-  CAUSA: string;
-  OBSERVACION: string;
 }
 
 export default function UserCard({ info }: EntryCardProps) {
@@ -41,8 +39,6 @@ export default function UserCard({ info }: EntryCardProps) {
 
   const [counter, setCounter] = useState<Icounter>({
     CANTIDAD_CONTADA: !info.CANTIDAD_CONTADA ? 0 : info.CANTIDAD_CONTADA,
-    CAUSA: !info.CAUSA ? "" : info.CAUSA._id,
-    OBSERVACION: !info.OBSERVACION ? "" : info.OBSERVACION,
   });
 
   useEffect(() => {
@@ -71,16 +67,6 @@ export default function UserCard({ info }: EntryCardProps) {
     formik.values.counter.CANTIDAD_CONTADA === 0
       ? NaN
       : presentation * counter.CANTIDAD_CONTADA;
-
-  useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-    if (counter.OBSERVACION !== formik.values.counter.OBSERVACION) {
-      timeoutId = setTimeout(() => {
-        formik.handleSubmit();
-      }, 1500);
-    }
-    return () => clearTimeout(timeoutId);
-  }, [formik.values.counter.OBSERVACION]);
 
   return (
     <tr className="bg-white text-2xs z-40 ">
