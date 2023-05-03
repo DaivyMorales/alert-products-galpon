@@ -38,10 +38,10 @@ export default function CauseNew({ showNew, setShowNew }: MyProps) {
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
-    if (formik.values.newCauseSchema.type !== newCauseSchema.type) {
+    if (newCauseSchema.type !== newCauseSchema.type) {
       timeoutId = setTimeout(() => {
         formik.handleSubmit();
-      }, 500);
+      }, 1500);
     }
     return () => clearTimeout(timeoutId);
   }, [formik.values.newCauseSchema.type]);

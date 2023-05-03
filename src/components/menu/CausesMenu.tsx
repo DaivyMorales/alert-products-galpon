@@ -23,6 +23,7 @@ interface IInventory {
 interface Icounter {
   CANTIDAD_CONTADA: number;
   CAUSA: string;
+  OBSERVACION: string;
 }
 
 interface MyProps {

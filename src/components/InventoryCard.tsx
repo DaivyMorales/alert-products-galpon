@@ -31,6 +31,7 @@ interface EntryCardProps {
 interface Icounter {
   CANTIDAD_CONTADA: number;
   CAUSA: string;
+  OBSERVACION: string;
 }
 
 export default function InventoryCard({ info }: EntryCardProps) {
@@ -44,9 +45,8 @@ export default function InventoryCard({ info }: EntryCardProps) {
   const [counter, setCounter] = useState<Icounter>({
     CANTIDAD_CONTADA: !info.CANTIDAD_CONTADA ? 0 : info.CANTIDAD_CONTADA,
     CAUSA: !info.CAUSA ? "" : info.CAUSA._id,
+    OBSERVACION: !info.OBSERVACION ? "" : info.OBSERVACION,
   });
-
-  console.log(counter);
 
   useEffect(() => {
     products.filter((product) => {
@@ -69,12 +69,21 @@ export default function InventoryCard({ info }: EntryCardProps) {
 
     enableReinitialize: true,
   });
-  // console.log("formik.values.counter", formik.values.counter);
 
   const TOTAL: number =
     formik.values.counter.CANTIDAD_CONTADA === 0
       ? NaN
       : presentation * counter.CANTIDAD_CONTADA;
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    if (counter.OBSERVACION !== formik.values.counter.OBSERVACION) {
+      timeoutId = setTimeout(() => {
+        formik.handleSubmit();
+      }, 1500);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [formik.values.counter.OBSERVACION]);
 
   return (
     <tr className="bg-white text-2xs z-40">
@@ -129,6 +138,24 @@ export default function InventoryCard({ info }: EntryCardProps) {
           handleSubmit={formik.handleSubmit}
           setFieldValue={formik.setFieldValue}
         />
+      </td>
+      <td className="h-full p-1">
+        <form onSubmit={formik.handleSubmit}>
+          <textarea
+            name="counter.OBSERVACION"
+            placeholder="Escribe aqui la observación"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={
+              formik.values.counter.OBSERVACION === ""
+                ? ""
+                : formik.values.counter.OBSERVACION
+            }
+          ></textarea>
+          <button type="submit" className="hidden">
+            Cambiar
+          </button>
+        </form>
       </td>
     </tr>
   );
