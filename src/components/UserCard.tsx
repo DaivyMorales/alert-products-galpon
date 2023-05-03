@@ -3,9 +3,6 @@ import { inventoryContext } from "@/context/InventoryContext";
 import React, { useContext, useState, ChangeEvent, useEffect } from "react";
 import { useFormik } from "formik";
 import { productContext } from "@/context/ProductContext";
-import CausesMenu from "./menu/CausesMenu";
-import { BiChevronDown } from "react-icons/bi";
-import { HiSparkles, HiXCircle } from "react-icons/hi";
 
 interface IInventory {
   PRODUCTO: string;
@@ -122,41 +119,6 @@ export default function UserCard({ info }: EntryCardProps) {
       <td style={isNaN(TOTAL) ? { visibility: "hidden" } : {}} className="p-1 ">
         {TOTAL}
       </td>
-      {/* <td
-        style={isNaN(TOTAL) ? { visibility: "hidden" } : {}}
-        className={`p-1 font-medium ${
-          TOTAL - info.CANTIDAD > 0 ? "text-gray-700" : "text-red-500"
-        }`}
-      >
-        {TOTAL - info.CANTIDAD}
-      </td> */}
-      {/* <td className="">
-        <CausesMenu
-          info={info}
-          setCounter={setCounter}
-          counter={counter}
-          handleSubmit={formik.handleSubmit}
-          setFieldValue={formik.setFieldValue}
-        />
-      </td> */}
-      {/* <td className="h-full p-1">
-        <form onSubmit={formik.handleSubmit}>
-          <textarea
-            name="counter.OBSERVACION"
-            placeholder="Escribe aqui la observación"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            value={
-              formik.values.counter.OBSERVACION === ""
-                ? ""
-                : formik.values.counter.OBSERVACION
-            }
-          ></textarea>
-          <button type="submit" className="hidden">
-            Cambiar
-          </button>
-        </form>
-      </td> */}
     </tr>
   );
 }

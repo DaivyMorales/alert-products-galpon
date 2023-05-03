@@ -242,13 +242,19 @@ export default function onlyadminuser({ data1, data2, data3 }: MyProps) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const res1 = await fetch("http://localhost:3001/api/inventory");
+  const res1 = await fetch(
+    "https://alert-products-galpon.vercel.app/api/inventory"
+  );
   const data1 = await res1.json();
 
-  const res2 = await fetch("http://localhost:3001/api/products");
+  const res2 = await fetch(
+    "https://alert-products-galpon.vercel.app/api/products"
+  );
   const data2 = await res2.json();
 
-  const res3 = await fetch("http://localhost:3001/api/causes");
+  const res3 = await fetch(
+    "https://alert-products-galpon.vercel.app/api/causes"
+  );
   const data3 = await res3.json();
 
   return {
